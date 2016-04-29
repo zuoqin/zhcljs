@@ -28,4 +28,4 @@ goog.addDependency("../reagent/core.js", ['reagent.core'], ['reagent.impl.util',
 goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../tailrecursion/cljson.js", ['tailrecursion.cljson'], ['cljs.core', 'goog.date.DateTime', 'clojure.string', 'cljs.reader']);
 goog.addDependency("../alandipert/storage_atom.js", ['alandipert.storage_atom'], ['goog.Timer', 'tailrecursion.cljson', 'cljs.core']);
-goog.addDependency("../testindexdb/core.js", ['testindexdb.core'], ['ajax.core', 'reagent.core', 'cljs.core', 'alandipert.storage_atom']);
+goog.addDependency("../zhcljs/core.js", ['zhcljs.core'], ['ajax.core', 'reagent.core', 'cljs.core', 'alandipert.storage_atom']);

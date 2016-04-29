@@ -1,4 +1,4 @@
-(ns testindexdb.core
+(ns zhcljs.core
   (:require
       [reagent.core :as reagent]
   ;;    [cljs-idxdb.core :as idx]
@@ -45,6 +45,52 @@
 )
 
 
+(defn handler [response]
+  (
+    let [
+      pageid (vector (keyword (str (get response "Page" )) )) 
+      ;;newdata (js->clj response)
+      newdata (into []
+      (map
+        (fn [story]
+          (assoc story
+           :Title (get story "Title") :Introduction (get story "Introduction") :Reference (get story "Reference") ))
+              (get response "Data")
+      ))
+
+
+
+
+
+;;[{:Title (get (first response) "Title") :Introduction  (get (first response) "Introduction") :Reference  (get (first response) "Reference") :Updated  (get (first response) "Updated") :Published (get (first response) "Pub;ished")}]
+    ]
+
+    (.log js/console (str pageid))
+    ;;(.log js/console (str (select-keys (js->clj response) [:Title :Reference :Introduction])  ))    
+    ;(swap! app-state assoc-in pageid newdata )
+    (swap! app-state assoc-in [:0] newdata )
+  )
+  
+  ;;(.log js/console (str  (response) ))
+  ;;(.log js/console (str  (get (first response)  "Title") ))
+
+  
+  
+)
+
+(defn error-handler [{:keys [status status-text]}]
+  (.log js/console (str "something bad happened: " status " " status-text)))
+
+(defn downloadpage [pageid]
+  (GET (str "http://localhost:8083/api/page/" pageid)  {:handler handler
+                                              :error-handler error-handler})
+
+)
+
+
+
+
+
 (defn build-items-html [all-items]
 
   [:div#blogItems.col-md-12 {:styles "margin-top: 60px;"}
@@ -77,21 +123,52 @@
         [:div {:align="left"}
           [:ul {:class "nav navbar-nav"}
             [:li
-              [:a {:href "/page/0"} "Home"]
+
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 0)
+                    )} "Home"
+              ]
+
             ]
             [:li {:id="page1li"}
-              [:a {:href "/page/1"} "Page 1"]
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 1)
+                    )} "Page 1"
+              ]
             ]
             [:li {:id="page2li"}
-              [:a {:href "/page/2"} "Page 2"]
+
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 2)
+                    )} "Page 2"
+              ]
             ]
 
             [:li {:id="page3li"}
-              [:a {:href "/page/3"} "Page 3"]
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 3)
+                    )} "Page 3"
+              ]
             ]
 
             [:li {:id="page4li"}
-              [:a {:href "/page/4"} "Page 4"]
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 4)
+                    )} "Page 4"
+              ]
+            ]
+
+            [:li {:id="page5li"}
+              [:a {:href "#" :on-click 
+                    (
+                      fn [event] (downloadpage 5)
+                    )} "Page 5"
+              ]
             ]
 
           ]
@@ -104,54 +181,10 @@
         (build-items-html (@app-state :0) )
       ]
     ]
-
   ]
-
-
-
 )
 
 (reagent/render [app] (js/document.querySelector "#cljs-target")
 )
 
-(defn handler [response]
-  (
-    let [
-      ;;newdata (js->clj response)
-      newdata (into [] ; optional -- places the answer into another vector
-      (map   ; apply the given function to every element in the collection
-        (fn [story] ; the function takes a student-grade
-          (assoc story ; and with this student-grade, creates a new mapping
-           :Title (get story "Title") :Introduction (get story "Introduction") :Reference (get story "Reference") ))
-              response
-      ))
-
-
-
-
-
-;;[{:Title (get (first response) "Title") :Introduction  (get (first response) "Introduction") :Reference  (get (first response) "Reference") :Updated  (get (first response) "Updated") :Published (get (first response) "Pub;ished")}]
-    ]
-
-
-    ;;(.log js/console (str (select-keys (js->clj response) [:Title :Reference :Introduction])  ))    
-    (swap! app-state assoc-in [:0] newdata )
-  )
-  
-  ;;(.log js/console (str  (response) ))
-  ;;(.log js/console (str  (get (first response)  "Title") ))
-
-  
-  
-)
-
-(defn error-handler [{:keys [status status-text]}]
-  (.log js/console (str "something bad happened: " status " " status-text)))
-
-(GET "http://take5people.cn:8083/api/page/0" {:handler handler
-               :error-handler error-handler})
-
-(js/setTimeout
- (fn [] (swap! app-state assoc-in [:message] "New Message"))
- 2000
-)
+(downloadpage 0)

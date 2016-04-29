@@ -54,10 +54,10 @@ if((i < len)){
 var i__$1 = (i + (1));
 (out[i__$1] = cljs.core.first.call(null,c));
 
-var G__8131 = i__$1;
-var G__8132 = cljs.core.rest.call(null,c);
-i = G__8131;
-c = G__8132;
+var G__9260 = i__$1;
+var G__9261 = cljs.core.rest.call(null,c);
+i = G__9260;
+c = G__9261;
 continue;
 } else {
 return out;
@@ -148,20 +148,20 @@ throw (new Error([cljs.core.str("No cljson encoding for type '"),cljs.core.str(c
 });
 tailrecursion.cljson.decode_tagged = (function tailrecursion$cljson$decode_tagged(o){
 var tag = (o[(0)]);
-var G__8140 = tag;
-switch (G__8140) {
+var G__9269 = tag;
+switch (G__9269) {
 case "v":
 var i = (1);
 var len = o.length;
 var out = cljs.core.transient$.call(null,cljs.core.PersistentVector.EMPTY);
 while(true){
 if((i < len)){
-var G__8142 = (i + (1));
-var G__8143 = len;
-var G__8144 = cljs.core.conj_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
-i = G__8142;
-len = G__8143;
-out = G__8144;
+var G__9271 = (i + (1));
+var G__9272 = len;
+var G__9273 = cljs.core.conj_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
+i = G__9271;
+len = G__9272;
+out = G__9273;
 continue;
 } else {
 return cljs.core.persistent_BANG_.call(null,out);
@@ -176,12 +176,12 @@ var len = o.length;
 var out = cljs.core.transient$.call(null,cljs.core.PersistentArrayMap.EMPTY);
 while(true){
 if((i < len)){
-var G__8145 = (i + (2));
-var G__8146 = len;
-var G__8147 = cljs.core.assoc_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])),tailrecursion.cljson.decode.call(null,(o[(i + (1))])));
-i = G__8145;
-len = G__8146;
-out = G__8147;
+var G__9274 = (i + (2));
+var G__9275 = len;
+var G__9276 = cljs.core.assoc_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])),tailrecursion.cljson.decode.call(null,(o[(i + (1))])));
+i = G__9274;
+len = G__9275;
+out = G__9276;
 continue;
 } else {
 return cljs.core.persistent_BANG_.call(null,out);
@@ -195,10 +195,10 @@ var i = (o.length - (1));
 var out = cljs.core.List.EMPTY;
 while(true){
 if((i > (0))){
-var G__8148 = (i - (1));
-var G__8149 = cljs.core.conj.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
-i = G__8148;
-out = G__8149;
+var G__9277 = (i - (1));
+var G__9278 = cljs.core.conj.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
+i = G__9277;
+out = G__9278;
 continue;
 } else {
 return out;
@@ -213,12 +213,12 @@ var len = o.length;
 var out = cljs.core.transient$.call(null,cljs.core.PersistentHashSet.EMPTY);
 while(true){
 if((i < len)){
-var G__8150 = (i + (1));
-var G__8151 = len;
-var G__8152 = cljs.core.conj_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
-i = G__8150;
-len = G__8151;
-out = G__8152;
+var G__9279 = (i + (1));
+var G__9280 = len;
+var G__9281 = cljs.core.conj_BANG_.call(null,out,tailrecursion.cljson.decode.call(null,(o[i])));
+i = G__9279;
+len = G__9280;
+out = G__9281;
 continue;
 } else {
 return cljs.core.persistent_BANG_.call(null,out);
